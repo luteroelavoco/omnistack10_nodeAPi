@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-
+const routes = require('./routes');
 const app = express();
 
 mongoose.connect('mongodb+srv://omnistack:Lutero19@cluster0-zt5sd.mongodb.net/week10?retryWrites=true&w=majority',{
@@ -9,6 +9,9 @@ mongoose.connect('mongodb+srv://omnistack:Lutero19@cluster0-zt5sd.mongodb.net/we
 });
 
 app.use(express.json());
+app.use(routes);
+
+app.listen(3333);
 //Tipos de parametros 
 
 // Query Params : request.query (Filtros, ordenação , paginação, ...)
@@ -17,11 +20,5 @@ app.use(express.json());
 
 
 // MongoDB (Não-relacional)
-app.get('/', (request,response )=> {
-    console.log(request.body);
-    return response.json({
-        message : 'Hello World'
-    });
-});
 
-app.listen(3333);
+
